@@ -1,12 +1,35 @@
-@()(implicit request: RequestHeader)
+@(user: String)(implicit request: RequestHeader)
 
-  @main {
+@main(Some(user)) {
 
-    <h1>@Messages("application.name")</h1>
-    <form id="chat">
-      <input type="text" id="msg" placeholder="What's happening?">
-      <button type="submit" id="submit">Send</button>
-    </form>
-    <ul id="msgs"></ul>
+  <h1>Chatroom for @user</h1>
+  <div id="error">Empty message?!</div>
+  <form id="chat">
+    <input type="text" id="msg" placeholder="What's happening?">
+    <button type="submit" id="submit">Send</button>
+  </form>
+  <ul id="msgs"></ul>
 
-  }
+  <script type="text/javascript">
+    $(function () {
+      ws = new WebSocket("@routes.Chat.chatSocket(user).webSocketURL()")
+
+      ws.onmessage = function (msg) {
+        $("<p />").text(msg.data).appendTo("#msgs")
+      }
+
+      $("#chat").submit(function () {
+        if ($("#msg").val().length === 0) {
+          $("#error").show();
+          return false;
+        } else {
+          $("#error").hide();
+          ws.send($("#msg").val())
+          $("#msg").val("").focus()
+          return false;
+        }
+      })
+    })
+  </script>
+
+}

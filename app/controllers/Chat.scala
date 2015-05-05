@@ -1,12 +1,12 @@
 package controllers
 
 import actors.{SystemActor, WebSocketActor}
-import akka.actor.Props
+import akka.pattern.ask
 import akka.util.Timeout
-import models.ChatRoom
+import models.Join
 import play.api.Play.current
+import play.api.libs.iteratee.{Enumerator, Iteratee}
 import play.api.mvc.{Action, Controller, WebSocket}
-import play.libs.Akka
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -16,21 +16,32 @@ import scala.concurrent.duration._
  */
 object Chat extends Controller {
 
-  def socket = WebSocket.acceptWithActor[String, String] { request =>
-    out =>
-      WebSocketActor.props(out)
-  }
-
   implicit val timeout = Timeout(1.seconds)
-  val room = Akka.system.actorOf(Props[ChatRoom])
 
-  def chat(msg: String) = Action.async { implicit request =>
-    SystemActor.log ! msg
-    Future.successful(Ok(views.html.chat()(request)))
+  def chat(user: String) = Action.async { implicit request =>
+
+    // Log the user
+    SystemActor.log ! user
+
+    // Show the chatroom screen
+    Future.successful(Ok(views.html.chat(user)(request)))
   }
 
-  def chatSocket(msg: String): WebSocket[String, String] =
-    WebSocket.acceptWithActor[String, String] { request =>
-      out => WebSocketActor.props(out)
-    }
+  def chatSocket(user: String) = WebSocket.async { request =>
+
+    // Ask for result
+    val channelsFuture = SystemActor.chatRoom ? Join(user)
+
+    channelsFuture.mapTo[(Iteratee[String, _], Enumerator[String])]
+  }
+
+  //  def chatSocket(user: String) = WebSocket.acceptWithActor[String, String] { request =>
+  //    out =>
+  //      val channelsFuture = SystemActor.chatRoom ? Join(user)
+  //
+  //      channelsFuture.mapTo[(Iteratee[String, _], Enumerator[String])]
+  //
+  //      WebSocketActor.props(out)
+  //  }
+
 }

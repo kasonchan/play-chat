@@ -1,7 +1,9 @@
-@()
+@(es: Option[String])
 
-@main {
+@main(None) {
 
   <h1>@Messages("application.name")</h1>
+  <p>Welcome to PlayChat!</p>
+  @es.getOrElse("")
 
 }

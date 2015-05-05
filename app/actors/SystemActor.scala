@@ -1,21 +1,41 @@
 package actors
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+import akka.actor._
+import models.{Join, ChatRoom}
 
 /**
  * Created by kasonchan on 5/3/15.
  */
-class SystemActor extends Actor with akka.actor.ActorLogging {
+class SystemActor extends Actor with ActorLogging {
+
+  override def preStart() = {
+    log.info("Prestart")
+  }
+
+  override def postStop() = {
+    log.info("Poststop")
+  }
 
   def receive = {
-    case m: String => log.info(m)
+    case s: String =>
+      log.info(s)
+    case j: Join =>
+      log.info(j.toString)
+    case x =>
+      log.error(x.toString)
   }
 
 }
 
 object SystemActor {
-  //    Create actor system
+
+  // Create actor system
   val system: ActorSystem = ActorSystem("system")
 
+  // Actor for logging
   val log: ActorRef = system.actorOf(Props[SystemActor], name = "log")
+
+  // Actor for chat room
+  val chatRoom: ActorRef = system.actorOf(Props[ChatRoom], name="chatRoom")
+
 }
