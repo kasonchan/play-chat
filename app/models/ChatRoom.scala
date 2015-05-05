@@ -18,9 +18,10 @@ case class Broadcast(message: String)
 
 class ChatRoom extends Actor {
 
-  //  A set of users' list
+  // A set of users' list
   var users = Set[String]()
 
+  // Enumerator channel
   val (enumerator, channel) = Concurrent.broadcast[String]
 
   def receive = {
@@ -42,12 +43,12 @@ class ChatRoom extends Actor {
         users += user
 
         // Send the message to channel
-        channel.push("%s has joined the room, now %s users"
+        channel.push("%s has joined the room, now the chatroom has %s users"
           format(user, users.size))
 
         sender() !(iteratee, enumerator)
       } else {
-        val enumerator = Enumerator("%s is already in user" format user)
+        val enumerator = Enumerator("%s has already joined the room" format user)
 
         // Ignore user messages
         val iteratee = Iteratee.ignore
@@ -57,9 +58,13 @@ class ChatRoom extends Actor {
       }
     }
     case Leave(user) => {
+      // Log the leave user
+      SystemActor.log ! ("%s: %s" format(self.path, Leave(user)))
+
       // Remove user from the users list
       users -= user
 
+      // Add the msg to the channel
       channel.push("%s has left the room, %s users left"
         format(user, users.size))
     }

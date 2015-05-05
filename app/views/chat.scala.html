@@ -12,12 +12,16 @@
 
   <script type="text/javascript">
     $(function () {
+      // Create a new websocket
       ws = new WebSocket("@routes.Chat.chatSocket(user).webSocketURL()")
 
+      // Add the received msg from the websocket to the screen
       ws.onmessage = function (msg) {
         $("<p />").text(msg.data).appendTo("#msgs")
       }
 
+      // Show error if empty msg
+      // Otherwise send the msg to the websocket
       $("#chat").submit(function () {
         if ($("#msg").val().length === 0) {
           $("#error").show();

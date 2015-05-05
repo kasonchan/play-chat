@@ -7,6 +7,8 @@ GET        /                     controllers.Application.index
 
 # Chat page
 GET        /chat/:user           controllers.Chat.chat(user)
+
+# Chat socket
 GET        /socket/:user         controllers.Chat.chatSocket(user)
 
 # Map static resources from the /public folder to the /assets URL path
