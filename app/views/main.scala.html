@@ -30,6 +30,24 @@
     src="@routes.Assets.at("javascripts/chat.js")" ></script>
     </head>
   <body>
-  @content
+
+      <!-- Reactive ribbon -->
+    <a href="http://www.reactivemanifesto.org/">
+      <img style="border : 0 ; position : fixed ; left : 0 ; top : 0 ; z-index : 9000"
+      src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-left.png">
+    </a>
+
+      <!-- Toolbar -->
+    <div class="toolbar">
+      <span>
+        <h1>@Messages("application.name")</h1>
+      </span>
+    </div>
+
+      <!-- Bottom sheet -->
+    <div class="bottom-sheet">
+      @content
+    </div>
+
   </body>
 </html>

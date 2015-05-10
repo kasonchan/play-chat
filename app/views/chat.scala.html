@@ -1,23 +1,28 @@
 @(user: String)(implicit request: RequestHeader)
 
-@main(Some(user)) {
+  @main(Some(user)) {
 
-  <h1>Chatroom for @user</h1>
-  <div id="error">Empty message?!</div>
-  <form id="chat">
-    <input type="text" id="msg" placeholder="What's happening?">
-    <button type="submit" id="submit">Send</button>
-  </form>
-  <ul id="msgs"></ul>
+    <div class="div-msgs-input">
+      <form id="chat">
+        <input type="text" id="msg" placeholder="What's happening?">
+        <button type="submit" id="submit">Send</button>
+      </form>
+    </div>
 
-  <script type="text/javascript">
+    <div id="error">
+      Empty message?!
+    </div>
+
+    <div class="div-msgs" id="msgs"></div>
+
+    <script type="text/javascript">
     $(function () {
       // Create a new websocket
       ws = new WebSocket("@routes.Chat.chatSocket(user).webSocketURL()")
 
       // Add the received msg from the websocket to the screen
       ws.onmessage = function (msg) {
-        $("<p />").text(msg.data).appendTo("#msgs")
+        $("<div class=\"div-msg\"/>").text(msg.data).prependTo("#msgs")
       }
 
       // Show error if empty msg
@@ -36,4 +41,4 @@
     })
   </script>
 
-}
+  }

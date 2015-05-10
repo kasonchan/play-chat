@@ -1,0 +1,29 @@
+// Msg
+
+input {
+  padding: $input-padding;
+  margin: $input-margin;
+  border: $input-border;
+  font-size: $input-font-size;
+  outline: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.div-msgs-input {
+  padding: $div-msgs-input-padding-tb $div-msgs-input-padding-lr;
+  border-top: $div-msgs-input-border-tb;
+  border-bottom: $div-msgs-input-border-tb;
+}
+
+.div-msgs {
+  padding: $div-msgs-padding-tb $div-msgs-padding-lr;
+}
+
+.div-msg {
+  background-color: $white;
+  padding: $div-msg-padding-tb $div-msg-padding-lr;
+  margin: $div-msg-margin-tb $div-msg-margin-lr;
+}

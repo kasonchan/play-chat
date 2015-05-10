@@ -19,7 +19,7 @@ object Application extends Controller {
 
     // Create enumerator of Hello World
     val enumerator: Enumerator[String] =
-      Enumerator("Hello", " World").andThen(Enumerator.eof)
+      Enumerator("Hello", " World!").andThen(Enumerator.eof)
 
     // Create iteratee future iterate enumerator
     val iterateeFuture: Future[Iteratee[String, String]] =
