@@ -47,5 +47,18 @@ object Chat extends Controller {
         Right(cf)
       }
     }
+  
+  /**
+   * User function
+   * @return the redirection to chatroom
+   */
+  def user = Action.async { implicit request =>
+    val username: String = request.body.asFormUrlEncoded.get("username")(0)
+
+    SystemActor.log ! username
+
+    // Redirect to the chat function
+    Future.successful(Redirect("/chat/" + username))
+  }
 
 }

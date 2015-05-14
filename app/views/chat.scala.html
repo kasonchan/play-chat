@@ -1,21 +1,21 @@
 @(user: String)(implicit request: RequestHeader)
 
-  @main(Some(user)) {
+@main(Some(user)) {
 
-    <div class="div-msgs-input">
-      <form id="chat">
-        <input type="text" id="msg" placeholder="What's happening?">
-        <button type="submit" id="submit">Send</button>
-      </form>
-    </div>
+  <div class="div-msgs-input">
+    <form id="chat">
+      <input type="text" id="msg" placeholder="What's happening?">
+      <button type="submit" id="submit">Send</button>
+    </form>
+  </div>
 
-    <div id="error">
-      Empty message?!
-    </div>
+  <div id="div-error">
+    Empty message?!
+  </div>
 
-    <div class="div-msgs" id="msgs"></div>
+  <div class="div-msgs" id="msgs"></div>
 
-    <script type="text/javascript">
+  <script type="text/javascript">
     $(function () {
       // Create a new websocket
       ws = new WebSocket("@routes.Chat.chatSocket(user).webSocketURL()")
@@ -29,10 +29,10 @@
       // Otherwise send the msg to the websocket
       $("#chat").submit(function () {
         if ($("#msg").val().length === 0) {
-          $("#error").show();
+          $("#div-error").show();
           return false;
         } else {
-          $("#error").hide();
+          $("#div-error").hide();
           ws.send($("#msg").val())
           $("#msg").val("").focus()
           return false;
@@ -41,4 +41,4 @@
     })
   </script>
 
-  }
+}

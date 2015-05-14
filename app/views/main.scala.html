@@ -4,6 +4,9 @@
 
 <html>
   <head>
+      <!-- Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
       <!-- Title -->
     @if(user) {
       <title>@user | @Messages("application.name")</title>
@@ -40,13 +43,15 @@
       <!-- Toolbar -->
     <div class="toolbar">
       <span>
-        <h1>@Messages("application.name")</h1>
+        <h1>
+          <a href="/">@Messages("application.name")</a>
+        </h1>
       </span>
     </div>
 
       <!-- Bottom sheet -->
     <div class="bottom-sheet">
-      @content
+    @content
     </div>
 
   </body>

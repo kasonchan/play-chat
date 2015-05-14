@@ -5,5 +5,5 @@
 $(document).ready(function () {
 
   // Hide error message
-  $("#error").hide();
+  $("#div-error").hide();
 })

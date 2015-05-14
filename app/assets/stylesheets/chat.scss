@@ -27,3 +27,26 @@ span {
 
   line-height: normal;
 }
+
+a:link {
+  color: $lightBlue;
+  text-decoration: none;
+}
+
+/* Visited link */
+a:visited {
+  color: $lightBlue;
+  text-decoration: none;
+}
+
+/* Mouse over link */
+a:hover {
+  color: $lightBlue;
+  text-decoration: none;
+}
+
+/* Selected link */
+a:active {
+  color: $lightBlue;
+  text-decoration: none;
+}

@@ -27,3 +27,10 @@ input:focus {
   padding: $div-msg-padding-tb $div-msg-padding-lr;
   margin: $div-msg-margin-tb $div-msg-margin-lr;
 }
+
+#div-error {
+  background-color: $white;
+  padding: $div-msg-padding-tb $div-msg-padding-lr;
+  margin: $div-msg-margin-tb $div-msg-margin-lr;
+  color: $red;
+}
