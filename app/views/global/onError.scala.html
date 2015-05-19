@@ -1,0 +1,11 @@
+@(username: Option[String])(throwable: Option[Throwable])
+
+  @main(username) {
+
+    @if(throwable) {
+      <div class="div-msg">
+        Internal server error: @throwable
+      </div>
+    }
+
+  }

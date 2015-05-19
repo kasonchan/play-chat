@@ -2,7 +2,7 @@
 // Msg
 //
 
-input[type=text] {
+input[type=text], input[type=password] {
   padding: $input-padding;
   margin: $input-margin;
   border: $input-border;

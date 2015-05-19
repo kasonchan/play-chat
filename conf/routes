@@ -2,15 +2,20 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET         /                     controllers.Application.index
-POST        /                     controllers.Chat.user
+# Home
+GET         /                     controllers.Application.login
 
-# Chat page
-GET         /chat/:user           controllers.Chat.chat(user)
+# Login
+POST        /                     controllers.Users.login
+
+# Signup
+GET         /signup               controllers.Application.signup
+
+# Chat
+GET         /chat/:user           controllers.Chats.chat(user)
 
 # Chat socket
-GET         /socket/:user         controllers.Chat.chatSocket(user)
+GET         /socket/:user         controllers.Chats.chatSocket(user)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file         controllers.Assets.at(path="/public", file)

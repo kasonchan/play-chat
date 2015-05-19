@@ -1,0 +1,11 @@
+//
+// User
+//
+
+.div-user {
+  background-color: $white;
+  padding: $div-msg-padding-tb $div-msg-padding-lr;
+  margin: $div-msg-margin-tb $div-msg-margin-lr;
+  z-index: 1;
+  box-shadow: 0 2px 4px $grey;
+}

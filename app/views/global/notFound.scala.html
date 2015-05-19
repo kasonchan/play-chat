@@ -1,0 +1,11 @@
+@(username: Option[String])(path: Option[String])
+
+  @main(username) {
+
+    @if(path) {
+      <div class="div-msg">
+        Page not found: @path
+      </div>
+    }
+
+  }

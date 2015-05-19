@@ -1,1 +1,14 @@
 application.name = PlayChat
+
+application.username = @playchat
+
+login.username.placeholder = Username
+login.email.placeholder = Email
+login.password.placeholder = Password
+login.label.login = Login
+login.label.signup = Signup
+
+signup.username.placeholder = Username
+signup.email.placeholder = Email
+signup.password.placeholder = Password
+signup.label.signup = Sign up

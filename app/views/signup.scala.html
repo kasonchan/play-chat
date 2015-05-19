@@ -1,0 +1,30 @@
+@(greets: Seq[String])(user: User)
+
+@main(None) {
+
+  <div class="div-msg">Welcome to PlayChat!</div>
+
+  @for(greet <- greets) {
+    <div class="div-msg">@greet</div>
+  }
+
+  <div class="div-user">
+    <form method="post" id="user" action="/">
+
+      <input type="text" id="username" name="username"
+      placeholder="@Messages("signup.username.placeholder")"
+      value="@user.username">
+
+      <input type="text" id="email" name="email"
+      placeholder="@Messages("signup.email.placeholder")"
+      value="@user.email">
+
+      <input type="password" id="password" name="password"
+      placeholder="@Messages("signup.password.placeholder")"
+      value="@user.password">
+
+      <button type="submit" id="submit">@Messages("signup.label.signup")</button>
+    </form>
+  </div>
+
+}
