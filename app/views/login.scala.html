@@ -1,4 +1,4 @@
-@(greets: Seq[String])(user: User)
+@(greets: Seq[String])(user: User)(messages: Seq[String])
 
 @main(None) {
 
@@ -8,16 +8,16 @@
     <div class="div-msg">@greet</div>
   }
 
+  @for(message <- messages) {
+    <div class="div-msg">@message </div>
+  }
+
   <div class="div-user">
     <form method="post" id="user" action="@routes.Users.login">
 
       <input type="text" id="username" name="username"
       placeholder="@Messages("login.username.placeholder")"
       value="@user.username">
-
-      <input type="text" id="email" name="email"
-      placeholder="@Messages("login.email.placeholder")"
-      value="@user.email">
 
       <input type="password" id="password" name="password"
       placeholder="@Messages("login.password.placeholder")"

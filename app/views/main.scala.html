@@ -14,23 +14,23 @@
       <title>@Messages("application.name")</title>
     }
 
-        <!-- Favicon -->
-      <link rel="shortcut icon" type="image/png"
-      href="@routes.Assets.at("../assets/images/favicon.png")">
+      <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png"
+    href="@routes.Assets.at("../assets/images/favicon.png")">
 
-        <!-- Font -->
-      <link rel='stylesheet' type='text/css'
-      href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' >
+      <!-- Font -->
+    <link rel='stylesheet' type='text/css'
+    href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' >
 
-        <!-- Stylesheet -->
-      <link rel="stylesheet" media="screen"
-      href="@routes.Assets.at("stylesheets/chat.min.css")">
+      <!-- Stylesheet -->
+    <link rel="stylesheet" media="screen"
+    href="@routes.Assets.at("stylesheets/chat.min.css")">
 
-        <!-- Script -->
-      <script type='text/javascript'
-      src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
-      <script type="text/javascript"
-      src="@routes.Assets.at("javascripts/chat.js")" ></script>
+      <!-- Script -->
+    <script type='text/javascript'
+    src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
+    <script type="text/javascript"
+    src="@routes.Assets.at("javascripts/chat.js")" ></script>
     </head>
   <body>
 
@@ -52,13 +52,15 @@
       </a>
 
       @if(username) {
-          &#64;@username
+          &#64; @username
       }
     </div>
 
       <!-- Bottom sheet -->
     <div class="bottom-sheet">
-    @content
+      <div class="div-msgs">
+      @content
+      </div>
     </div>
 
       <!-- Bottom sheet background -->

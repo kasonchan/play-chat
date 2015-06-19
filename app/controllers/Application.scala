@@ -47,7 +47,7 @@ object Application extends Controller {
     val greets: Seq[String] = greeting
 
     // Print the greeting result to the login screen
-    Future.successful(Ok(views.html.login(greets)(User(None, None, None))))
+    Future.successful(Ok(views.html.login(greets)(User(None, None, None))(Seq())))
   }
 
   /**
@@ -59,8 +59,8 @@ object Application extends Controller {
 
     val greets: Seq[String] = greeting
 
-    // Print the greeting result to the login screen
-    Future.successful(Ok(views.html.signup(greets)(User(None, None, None))))
+    // Print the greeting result to the signup screen
+    Future.successful(Ok(views.html.signup(greets)(User(None, None, None))(Seq())))
   }
 
 }

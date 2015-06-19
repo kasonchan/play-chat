@@ -1,5 +1,7 @@
 # PlayChat (Under construction) #
 
+[![Build Status](https://travis-ci.org/KasonChan/play-chat.svg)](https://travis-ci.org/KasonChan/play-chat)
+
 A simple web chat application.
 
 ### Requirements ###
