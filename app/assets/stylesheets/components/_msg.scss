@@ -2,7 +2,7 @@
 // Msg
 //
 
-input[type=text], input[type=password] {
+input[type=text] {
   padding: $input-padding;
   margin: $input-margin;
   border: $input-border;
@@ -33,7 +33,6 @@ input:focus {
 
 .div-msgs {
   padding: $div-msgs-padding-tb $div-msgs-padding-lr;
-  margin: auto;
 }
 
 .div-msg {

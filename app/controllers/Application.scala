@@ -1,6 +1,6 @@
 package controllers
 
-import models.User
+import actors.SystemActor
 import play.api.libs.iteratee.{Enumerator, Iteratee}
 import play.api.mvc.{Action, AnyContent, Controller}
 
@@ -14,12 +14,9 @@ object Application extends Controller {
     (cons: String, chunk: String) => cons.concat(chunk)
   }
 
-  /**
-   * Greeting
-   * Generate sequence of greetings - Hello World!
-   * @return Seq[String]
-   */
-  def greeting: Seq[String] = {
+  def index: Action[AnyContent] = Action.async {
+    SystemActor.log ! "Index"
+
     // Create enumerator of Hello World
     val enumerator: Enumerator[String] =
       Enumerator("Hello", " World!").andThen(Enumerator.eof)
@@ -34,33 +31,8 @@ object Application extends Controller {
     // Wait for the result for 3 seconds
     val result = Await.result(resultFuture, 3.seconds)
 
-    Seq(result)
-  }
-
-  /**
-   * Login
-   * Route to login view
-   * @return
-   */
-  def login: Action[AnyContent] = Action.async { implicit request =>
-
-    val greets: Seq[String] = greeting
-
-    // Print the greeting result to the login screen
-    Future.successful(Ok(views.html.login(greets)(User(None, None, None))(Seq())))
-  }
-
-  /**
-   * Signup
-   * Route to signup view
-   * @return Action[AnyContent]
-   */
-  def signup: Action[AnyContent] = Action.async { implicit request =>
-
-    val greets: Seq[String] = greeting
-
-    // Print the greeting result to the signup screen
-    Future.successful(Ok(views.html.signup(greets)(User(None, None, None))(Seq())))
+    // Print the result to the screen
+    Future.successful(Ok(views.html.index(Some(result))))
   }
 
 }

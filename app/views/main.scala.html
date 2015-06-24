@@ -1,4 +1,4 @@
-@(username: Option[String])(content: Html)
+@(user: Option[String])(content: Html)
 
 <!DOCTYPE html>
 
@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
       <!-- Title -->
-    @if(username) {
-      <title>@username | @Messages("application.name")</title>
+    @if(user) {
+      <title>@user | @Messages("application.name")</title>
     } else {
       <title>@Messages("application.name")</title>
     }
@@ -36,7 +36,7 @@
 
       <!-- Reactive ribbon -->
     <a href="http://www.reactivemanifesto.org/">
-      <img style="border : 0 ; position : fixed ; right : 0 ; top : 0 ; z-login : 9000"
+      <img style="border : 0 ; position : fixed ; right : 0 ; top : 0 ; z-index : 9000"
       src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-right.png">
     </a>
 
@@ -50,20 +50,13 @@
           </h1>
         </span>
       </a>
-
-      @if(username) {
-          &#64; @username
-      }
     </div>
 
       <!-- Bottom sheet -->
     <div class="bottom-sheet">
-      <div class="div-msgs">
-      @content
-      </div>
+    @content
     </div>
 
-      <!-- Bottom sheet background -->
     <div class="bottom_sheet_background">
       <img src="@routes.Assets.at("../assets/images/favicon_white.png")">
     </div>

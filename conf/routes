@@ -2,30 +2,18 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home
-GET         /                        controllers.Application.login
+# Home page
+GET         /                     controllers.Application.index
+POST        /                     controllers.Chat.user
 
-# Login
-POST        /                        controllers.Users.login
-
-# Signup
-GET         /signup                  controllers.Application.signup
-
-POST        /signup                  controllers.Users.signup
-
-# Chat
-GET         /chat/:user              controllers.Chats.chat(user)
+# Chat page
+GET         /chat/:user           controllers.Chat.chat(user)
 
 # Chat socket
-GET         /socket/:user            controllers.Chats.chatSocket(user)
-
-# Test
-GET         /tests/test/:user        controllers.Tests.chat(user)
-
-GET         /tests/socket            controllers.Tests.socket
+GET         /socket/:user         controllers.Chat.chatSocket(user)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file            controllers.Assets.at(path="/public", file)
-GET         /webjars/*file           controllers.WebJarAssets.at(file)
-GET         /vassets/*file           controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file         controllers.Assets.at(path="/public", file)
+GET         /webjars/*file        controllers.WebJarAssets.at(file)
+GET         /vassets/*file        controllers.Assets.versioned(path="/public", file: Asset)
 

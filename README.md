@@ -1,4 +1,4 @@
-# PlayChat (Under construction) #
+# PlayChat #
 
 [![Build Status](https://travis-ci.org/KasonChan/play-chat.svg)](https://travis-ci.org/KasonChan/play-chat)
 
@@ -19,7 +19,7 @@ This application is built with [Scala](http://www.scala-lang.org/),
 - Download/Unzip this repository.
 - Enter `sbt compile` to compile.
 - Enter `sbt start` to execute.
-- Enter `http://localhost:9000/chat/<username>` in browser.
+- Enter `http://localhost:9000` in browser.
 - Enter `sbt clean` to clean up the built files.
 
 ### References ###
